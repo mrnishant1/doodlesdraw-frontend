@@ -13,11 +13,12 @@ async function creatroom(
   password?: string
 ) {
   try {
-    const parsed = createRoomSchema.safeParse({ 
+    const parsed = createRoomSchema.safeParse({
       roomcode,
       userId,
       isPrivate,
-      password,});
+      password,
+    });
 
     if (!parsed.success) {
       console.log("not parsed cuccessfully");
@@ -30,14 +31,13 @@ async function creatroom(
       return "Password is required for private rooms.";
     }
 
- const res = await axios.post(
+    const res = await axios.post(
       "/api/create-room",
       { ...parsed },
-      { validateStatus: () => true },
-      
+      { validateStatus: () => true }
     );
 
-    return (res.data);
+    return res.data;
   } catch (error) {
     alert(error);
   }
@@ -81,18 +81,20 @@ export default function CreateRoom() {
     if (create) {
       const response = await creatroom(roomcode, userId, !publicroom, password);
       setFormErrors(response.message);
-      redirect(`/rooms/${response.room.id}`)
+      redirect(`/rooms/${response.room.id}`);
     } else {
       const response = await joinRoom(roomcode, userId, password);
       setFormErrors(response.message);
-      redirect(`/rooms/${response.membership.roomId}`)
+      redirect(`/rooms/${response.membership.roomId}`);
     }
   };
 
   const { data: session } = useSession();
   useEffect(() => {
-
-    if (!session?.user.id) {redirect('/signin')};
+    if (!session?.user.id) {
+      console.log(session?.user.id )
+      return;
+    }
     setuserId(session.user.id);
   }, [session]);
 
@@ -126,7 +128,9 @@ export default function CreateRoom() {
                 className="w-full px-3 py-2 border-2 border-gray-800 rounded-md font-hand focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter a unique room name..."
                 value={roomcode}
-                onChange={(e) => {setroomcode(e.target.value)}}
+                onChange={(e) => {
+                  setroomcode(e.target.value);
+                }}
                 required
               />
             </div>
@@ -154,7 +158,9 @@ export default function CreateRoom() {
             </label>
             {/* Password */}
             <div
-              className={`${publicroom ? "hidden" : "visible"} transition-transform`}
+              className={`${
+                publicroom ? "hidden" : "visible"
+              } transition-transform`}
             >
               <label className="block font-hand text-lg mb-1">Password</label>
               <input
