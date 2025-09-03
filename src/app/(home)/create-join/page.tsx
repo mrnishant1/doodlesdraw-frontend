@@ -91,8 +91,8 @@ export default function CreateRoom() {
 
   const { data: session } = useSession();
   useEffect(() => {
-    console.log(session?.user.id);
-    if (!session?.user.id) return;
+
+    if (!session?.user.id) {redirect('/signin')};
     setuserId(session.user.id);
   }, [session]);
 

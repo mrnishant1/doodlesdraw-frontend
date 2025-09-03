@@ -1,6 +1,6 @@
 import RoomCard from "../../component/roomcard";
 import { authOptions } from "../../../lib/authOption";
-
+import { redirect } from "next/navigation";
 import { prisma } from "../../../lib/db";
 import { getServerSession } from "next-auth";
 
@@ -9,10 +9,10 @@ export default async function Rooms() {
   console.log(JSON.stringify(session));
   const userId = session?.user.id;
 
-  if (!userId)
-    return (
-      <div className="text-center text-red-500 p-6">⚠️ No session found</div>
-    );
+  if (!userId){
+    redirect('/signin');
+  }
+    
 
   const response = await prisma.rooms.findMany({
     where: { memberships: { some: { userId: userId } } },

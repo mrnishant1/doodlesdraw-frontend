@@ -1,5 +1,12 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap');
+html {
+  font-size: 16px; /* consistent across browsers */
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
 
 .delicious-handrawn-regular {
   font-family: "Delicious Handrawn", cursive;
