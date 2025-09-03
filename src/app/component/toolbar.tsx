@@ -25,7 +25,7 @@ export default function Toolbar() {
     {/* Side tools */}
     <div className={`${sidetools?"w-[260px] left-[180px]":"w-[20px] left-[55px]"}  duration-500 transition-all h-[500px] flex flex-row font-cursive items-center fixed top-[12%]   transform -translate-x-1/2 bg-[#d2e3e6] shadow-2xl rounded-lg p-3 `}>
         <div onClick={()=>setsidetools(!sidetools)} className={` relative h-full w-[4%] left-0 top-0 border-gray-500 border-2 rounded-md cursor-pointer`}></div>
-        <div className={`${sidetools?"visible":"hidden"} text-2xl w-full h-full p-2 border-gray-500 border-2 rounded-md flex flex-col gap-2`}>
+        <div className={`${sidetools?"visible":"hidden"} text-sm w-full h-full p-2 border-gray-500 border-2 rounded-md flex flex-col gap-2`}>
           <span>Outline</span>
           <div className="bg-[#ffffff] w-full rounded-md transition-all duration-400 flex gap-1.5 items-center flex-col">
             <div className="flex w-full items-center justify-between">
