@@ -1,7 +1,6 @@
 "use client"
 import Link from "next/link";
 import { ReactNode } from "react";
-import { CgProfile } from "react-icons/cg";
 import { MdMail, MdMeetingRoom } from "react-icons/md";
 import { CiLogin } from "react-icons/ci";
 import { TbAccessPoint } from "react-icons/tb";
@@ -9,19 +8,10 @@ import { RiGroup2Line } from "react-icons/ri";
 import { IoMdLogOut } from "react-icons/io";
 import { useExistingStore } from "../../hooks/useglobalstore";
 import { IoIosNuclear } from "react-icons/io";
-import { FaSave } from "react-icons/fa";
 import { useParams } from "next/navigation";
 
 export default function Sidemenu({visiblety}:{visiblety:ReactNode}) {
   const {clearShapes} = useExistingStore();
-  const {rooms} = useParams()
-
-  function saveChats(){
-    console.log({rooms});
-  }
-
-
-
   return (
     <>
     <div className={`${visiblety?"visible":"hidden"} font-cursive text-2xl items-center fixed top-[12%] left-[12%] h-[70%] w-[15%] transform -translate-x-1/2 bg-[#d2e3e6] shadow-2xl rounded-lg p-3 flex flex-col`}>

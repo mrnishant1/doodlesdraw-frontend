@@ -17,14 +17,14 @@ export default function SignInPage() {
   const searchparams = useSearchParams();
   const error = searchparams.get("error");
 
-  const [auth, setauth] = useState<Boolean>(true);
+  const [auth, setauth] = useState<boolean>(true);
 
   const handleCredentialsSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     const parsed = loginSchema.safeParse({ email, password });
 
     if (!parsed.success) {
-      // @ts-ignore
+       // @ts-expect-error: ZodError type inference workaround
       const errors: ZodError = parsed.error.flatten().fieldErrors;
       setFormErrors(JSON.stringify(errors));
       return;

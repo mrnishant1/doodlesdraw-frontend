@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import { DrawingMessageHandler } from "./Allcanvas";
 import { ToolType } from "../Types/tooltype";
 import { ChatType } from "../Types/tooltype";

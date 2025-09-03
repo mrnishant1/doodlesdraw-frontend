@@ -6,20 +6,19 @@ import z from "zod";
 import bcrypt from "bcryptjs";
 
 const LoginSchema = z.object({
-  email: z.email(),
-  password: z.string().min(6,{error:"Minimum 6 digit password required"}),
+  email: z.string().email(),
+  password: z.string().min(6, { message: "Minimum 6 digit password required" }),
   intent: z.enum(["signin", "signup"]).default("signin"),
 });
 
 export const authOptions: NextAuthOptions = {
   pages: {
-    signIn: "/signin", // custom signin page
-    error: "/signin", // redirect here on error too
+    signIn: "/signin",
+    error: "/signin",
   },
   session: { strategy: "jwt" },
   providers: [
     CredentialsProvider({
-      // The name to display on the sign in form (e.g. 'Sign in with...')
       name: "Email",
       credentials: {
         email: {
@@ -29,19 +28,18 @@ export const authOptions: NextAuthOptions = {
         },
         password: { label: "Password", type: "password" },
       },
-
       async authorize(credentials) {
         const parsed = LoginSchema.safeParse(credentials);
         if (!parsed.success) {
           throw new Error("InvalidForm");
         }
+
         const { email, password, intent } = parsed.data;
 
         const existing = await prisma.user.findUnique({ where: { email } });
 
         if (!existing) {
           if (intent !== "signup") {
-            // No account and not explicitly signing up
             throw new Error("NoAccount, Please signUp");
           }
           const hashed = await bcrypt.hash(password, 10);
@@ -51,9 +49,11 @@ export const authOptions: NextAuthOptions = {
           return { id: created.id.toString(), email: created.email };
         }
 
-        // Existing user → verify password
-        if(!existing.password) throw new Error ("Invalid password")
-        const ok = bcrypt.compare(password, existing.password);
+        if (!existing.password) {
+          throw new Error("Invalid password");
+        }
+
+        const ok = await bcrypt.compare(password, existing.password);
         if (!ok) {
           throw new Error("InvalidPassword");
         }
@@ -74,23 +74,19 @@ export const authOptions: NextAuthOptions = {
     async signIn({ user }) {
       if (!user.email) return false;
 
-      // Ensure user exists in DB
       const dbUser = await prisma.user.upsert({
         where: { email: user.email },
         update: {},
         create: { email: user.email, name: user.name ?? "" },
       });
-      console.log(JSON.stringify(dbUser));
 
-      // Attach DB id to user object
       user.id = dbUser.id.toString();
-      
       return true;
     },
 
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id; // consistent across providers
+        token.id = user.id;
         token.email = user.email;
       }
       return token;
@@ -98,7 +94,7 @@ export const authOptions: NextAuthOptions = {
 
     async session({ session, token }) {
       if (session.user) {
-        session.user.id = token.id as string; // attach from jwt
+        session.user.id = token.id as string;
         session.user.email = token.email as string;
       }
       return session;

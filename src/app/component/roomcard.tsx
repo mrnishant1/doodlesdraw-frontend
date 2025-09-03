@@ -2,6 +2,7 @@
 import { redirect } from "next/navigation";
 import React from "react";
 import { FaDoorOpen, FaShareAlt } from "react-icons/fa";
+import Image from "next/image";
 
 interface RoomCardProps {
   image: string;
@@ -33,11 +34,12 @@ const RoomCard: React.FC<RoomCardProps> = ({
     >
       {/* Room Image */}
       <div className="relative h-20 w-20">
-        <img
+        {/* <img
           src={image}
           alt={title}
           className="h-full w-full object-cover rounded-full border border-gray-200"
-        />
+        /> */}
+        <Image width={100} height={100} src={image} alt=""></Image>
         <div className="absolute bottom-1 right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white" />
       </div>
 

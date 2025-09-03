@@ -1,5 +1,5 @@
 "use client"
-import { useState,useEffect, Reference } from "react";
+import { useState } from "react";
 import { redirect } from "next/navigation";
 import { useServerSocket } from "../../hooks/useserver";
 import { FaShare } from "react-icons/fa";
@@ -10,7 +10,7 @@ interface Props {
 }
 
 export function ShareButton({params}:Props) {
-  const [open, setOpen] = useState<Boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
   const { connect } = useServerSocket();
 
 const handleconnect = ()=>{

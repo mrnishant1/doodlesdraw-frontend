@@ -1,8 +1,8 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import {
   CanvastoDraw,
-  drawAgainPreviousShape,
+  
 } from "../CanvasRelated/Allcanvas";
 
 import { AllmessageHandler } from "../CanvasRelated/AllmessageHandler";
@@ -16,7 +16,7 @@ interface Props {
 }
 export function CanvasSheet({params}:Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { socket, connect, disconnect, loading } = useServerSocket();
+  const { socket, disconnect, loading } = useServerSocket();
   
 
   //My code is Like building block, you'll find function as building block with lines like ---------------------------------------------------------------
@@ -75,7 +75,7 @@ export function CanvasSheet({params}:Props) {
       cleanup?.();
       //disconnect(); //<- only if you want to stop collab on unmount
     };
-  }, [loading]);
+  }, [loading,params,socket]);
 
   //Helps in Message to other user in room-----------------------------
   
@@ -94,9 +94,9 @@ export function CanvasSheet({params}:Props) {
     });
       disconnect();
     };
-  }, [loading]);
+  }, [loading,disconnect,socket]);
 
-  const {CanvasBG,setCanvasBG} = useCanvasBG();
+  const {CanvasBG} = useCanvasBG();
 
   return (
     <div className="bg-gray-400 w-[100%] h-[100%]">

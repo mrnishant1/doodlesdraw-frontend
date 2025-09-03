@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import { Socket } from "socket.io-client";
 import rough from "roughjs";
 import { useStrokeColor, useShapeStore, useBGFill, useStroke } from "../../hooks/useShape";

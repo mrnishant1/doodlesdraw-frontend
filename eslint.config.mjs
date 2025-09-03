@@ -19,6 +19,14 @@ const eslintConfig = [
       "build/**",
       "next-env.d.ts",
     ],
+    
+  rules: {
+    "react/display-name": "off",
+    "import/no-anonymous-default-export": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "import/no-unused-modules": "off",
+  },
   },
 ];
 

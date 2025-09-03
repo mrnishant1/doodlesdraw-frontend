@@ -46,10 +46,10 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({success: true, message:"Joined the Room",membership:membership },{status: 200 });
     
-  } catch (err: any) {
-    return NextResponse.json(
-      { error: err.message || "Something went wrong" },
-      { status: 500 }
-    );
-  }
+  } catch (error: unknown) {
+  const message =
+    error instanceof Error ? error.message : "Something went wrong";
+  return NextResponse.json({ error: message }, { status: 500 });
+}
+
 }

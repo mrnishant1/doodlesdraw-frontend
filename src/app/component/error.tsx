@@ -1,6 +1,7 @@
 // components/ErrorPage.tsx
 "use client";
 import { MdError } from "react-icons/md";
+import Link from "next/link";
 
 interface ErrorPageProps {
   error: string;
@@ -20,12 +21,12 @@ export default function ErrorPage({ error }: ErrorPageProps) {
           Something went wrong
         </h1>
         <p className="text-gray-600 mb-6">{error}</p>
-        <a
+        <Link
           href="/"
           className="inline-block px-6 py-2 rounded-xl bg-red-500 text-white font-medium shadow hover:bg-red-600 transition"
         >
           Go Home
-        </a>
+        </Link>
       </div>
     </div>
     </div>

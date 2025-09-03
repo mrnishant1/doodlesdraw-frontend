@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useId, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { createRoomSchema, roomschema } from "../../signin/loginschema";
@@ -126,9 +126,7 @@ export default function CreateRoom() {
                 className="w-full px-3 py-2 border-2 border-gray-800 rounded-md font-hand focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter a unique room name..."
                 value={roomcode}
-                onChange={(e) => {
-                  (setroomcode(e.target.value), console.log(roomcode));
-                }}
+                onChange={(e) => {setroomcode(e.target.value)}}
                 required
               />
             </div>
