@@ -14,7 +14,7 @@ export default function Sidemenu({visiblety}:{visiblety:ReactNode}) {
   const {clearShapes} = useExistingStore();
   return (
     <>
-    <div className={`${visiblety?"visible":"hidden"} font-cursive text-2xl items-center fixed top-[12%] left-[240px] h-[600px] w-[350px] transform -translate-x-1/2 bg-[#d2e3e6] shadow-2xl rounded-lg p-3 flex flex-col`}>
+    <div className={`${visiblety?"visible":"hidden"} font-cursive text-2xl items-center fixed top-[12%] left-[240px] h-[600px] w-[340px] transform -translate-x-1/2 bg-[#d2e3e6] shadow-2xl rounded-lg p-3 flex flex-col`}>
         <div className="w-full h-full p-2 border-gray-500 border-2 rounded-md flex flex-col justify-around">
             {/* <Link className="hover:bg-[#969b9b] w-[100%] rounded-md transition-all duration-400 flex flex-row gap-1.5 items-center " href="/rooms"    >   {<CgProfile/>} </Link> */}
 
