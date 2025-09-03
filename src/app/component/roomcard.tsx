@@ -20,7 +20,7 @@ const RoomCard: React.FC<RoomCardProps> = ({
   };
 
   const handleShare = () => {
-    navigator.clipboard.writeText(`http://localhost:3000/rooms/${roomid}`);
+    navigator.clipboard.writeText(`https://doodlesdraw.vercel.app/${roomid}`);
     alert("Room link copied!");
   };
 

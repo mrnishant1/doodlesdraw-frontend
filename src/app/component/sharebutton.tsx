@@ -52,7 +52,7 @@ const handleconnect = ()=>{
               </button>
               <div className="w-full flex flex-row h-[30%]">
                 <span className="w-full h-full bg-indigo-200 rounded-2xl border-2 border-indigo-300">
-                  {params?`Share: http:localhost:3000/rooms/${params}`:`Creat or Join a room to Start a session`}
+                  {params?`Share: https://doodlesdraw.vercel.app/rooms/${params}`:`Creat or Join a room to Start a session`}
                 </span>
                 {params&&<button
                   className="bg-indigo-400 hover:bg-indigo-500 text-black px-5 py-2 rounded-lg font-medium transition active:scale-90"
